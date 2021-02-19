@@ -47,9 +47,8 @@ void insert( LLPtr *sPtr, int value )
 
       // loop to find the correct location in the list       
       while ( currentPtr != NULL && value > currentPtr->data ) {
-         previousPtr = currentPtr; // walk to ...               
-         currentPtr = currentPtr->nextPtr; // ... next node 
-         previousPtr->nextPtr = newPtr;
+         previousPtr = currentPtr->prevPtr; // walk to ...               
+         currentPtr = currentPtr->nextPtr;// ... next node 
       } // end while                                         
 
       // insert new node at beginning of list
@@ -59,6 +58,7 @@ void insert( LLPtr *sPtr, int value )
       } // end if
       else { // insert new node between previousPtr and currentPtr
          previousPtr->nextPtr = newPtr;
+         *sPtr = newPtr;
          newPtr->nextPtr = currentPtr;
       } // end else
    } // end if
@@ -137,12 +137,11 @@ void printList( LLPtr currentPtr )
    } // end if
   else{
     puts( "The list is:" );
-
+      do{
+        printf( "%d --> ", currentPtr->data );
+        currentPtr = currentPtr->nextPtr; 
+      }while(currentPtr != NULL );
       // while not the end of the list
-      while ( currentPtr != NULL ) { 
-         printf( "%d --> ", currentPtr->data );
-         currentPtr = currentPtr->prevPtr; 
-      } // end while
 
       puts( "NULL\n" );
   }//end else
