@@ -2,8 +2,10 @@
 struct Node {                                      
    int data; // each listNode contains a character 
    struct Node *nextPtr; // pointer to next node
-}; // end structure listNode                        
-// prototypes
+}; // end structure listNode                    
+
+//move from line15==>
+typedef LLnode *LLPtr; // synonym for ListNode* 
 
 int deletes( LLPtr *sPtr, int value );
 int isEmpty( LLPtr sPtr );
@@ -12,7 +14,7 @@ void printList( LLPtr currentPtr );
 void instructions( void );
 
 typedef struct Node LLnode; // synonym for struct listNode
-typedef LLnode *LLPtr; // synonym for ListNode*
+
 
 
 // display program instructions to user
