@@ -2,16 +2,18 @@
 struct Node {                                      
    int data; // each listNode contains a character 
    struct Node *nextPtr; // pointer to next node
+   struct Node *prevPtr; // pointer to previous node yayaya
 }; // end structure listNode                
 
 //move from line15==>    
 typedef struct Node LLnode; // synonym for struct listNode
-typedef LLnode *LLPtr; // synonym for ListNode* 
+typedef LLnode* LLPtr; // synonym for ListNode* 
 
 int deletes( LLPtr *sPtr, int value );
 int isEmpty( LLPtr sPtr );
 void insert( LLPtr *sPtr, int value );
 void printList( LLPtr currentPtr );
+void printListR( LLPtr currentPtr); //yayaya
 void instructions( void );
 
 
@@ -47,6 +49,7 @@ void insert( LLPtr *sPtr, int value )
       while ( currentPtr != NULL && value > currentPtr->data ) {
          previousPtr = currentPtr; // walk to ...               
          currentPtr = currentPtr->nextPtr; // ... next node 
+         previousPtr->nextPtr = newPtr;
       } // end while                                         
 
       // insert new node at beginning of list
@@ -125,3 +128,23 @@ void printList( LLPtr currentPtr )
       puts( "NULL\n" );
    } // end else
 } // end function printList
+
+ void printListR(LLPtr currentPtr)
+ {
+      // if list is empty
+   if ( isEmpty( currentPtr ) ) {
+      puts( "List is empty.\n" );
+   } // end if
+  else{
+    puts( "The list is:" );
+
+      // while not the end of the list
+      while ( currentPtr != NULL ) { 
+         printf( "%d --> ", currentPtr->data );
+         currentPtr = currentPtr->prevPtr;   
+      } // end while
+
+      puts( "NULL\n" );
+  }//end else
+ }
+
